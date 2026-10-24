@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import LoadingIndicator from '../components/LoadingIndicator.jsx'
 import ErrorMessage from '../components/ErrorMessage.jsx'
 import Rating from '../components/Rating.jsx'
+import FavoriteButton from '../components/FavoriteButton.jsx'
 import { getProductById } from '../services/productService.js'
 import { formatCategory, formatPrice } from '../utils/formatters.js'
 import '../styles/ProductDetailPage.css'
@@ -87,6 +88,8 @@ function ProductDetailPage() {
             <h2>Beschrijving</h2>
             <p>{product.description}</p>
           </div>
+
+          <FavoriteButton productId={product.id} />
         </div>
       </article>
     </section>

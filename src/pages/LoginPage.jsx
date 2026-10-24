@@ -17,8 +17,10 @@ function LoginPage() {
   const [activeTab, setActiveTab] = useState('inloggen')
   const [registeredEmail, setRegisteredEmail] = useState('')
 
-  // Doorgestuurd vanaf een beveiligde pagina (zie PrivateRoute)
+  // Doorgestuurd vanaf een beveiligde pagina (PrivateRoute) of een actie zoals de favorietenknop
   const cameFromProtectedPage = Boolean(location.state?.from)
+  const redirectMessage =
+    location.state?.message || 'Log in om deze pagina te bekijken.'
 
   function handleRegistered(email) {
     setRegisteredEmail(email)
@@ -102,9 +104,7 @@ function LoginPage() {
                   </p>
                 )}
                 {cameFromProtectedPage && !sessionExpired && !registeredEmail && (
-                  <p className="auth-page__notice">
-                    Log in om deze pagina te bekijken.
-                  </p>
+                  <p className="auth-page__notice">{redirectMessage}</p>
                 )}
                 {registeredEmail && (
                   <SuccessMessage message="Je account is aangemaakt. Log nu in met je e-mailadres en wachtwoord." />

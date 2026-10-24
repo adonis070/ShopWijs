@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AuthContext } from './AuthContext.js'
 import { loginUser } from '../services/authService.js'
-import { isTokenExpired } from '../utils/jwt.js'
+import { getTokenExpiry, isTokenExpired } from '../utils/jwt.js'
 
 const STORAGE_KEY = 'shopwijs-auth'
 
@@ -40,11 +40,29 @@ function clearStoredSession() {
 
 function AuthProvider({ children }) {
   const [session, setSession] = useState(readStoredSession)
+  const [sessionExpired, setSessionExpired] = useState(false)
+
+  // Tokens van de NOVI API zijn een uur geldig: log automatisch uit zodra de token verloopt
+  useEffect(() => {
+    const expiry = session ? getTokenExpiry(session.token) : null
+    if (expiry === null) {
+      return
+    }
+
+    const timeoutId = setTimeout(() => {
+      clearStoredSession()
+      setSession(null)
+      setSessionExpired(true)
+    }, expiry - Date.now())
+
+    return () => clearTimeout(timeoutId)
+  }, [session])
 
   async function login(email, password) {
     const newSession = await loginUser(email, password)
     storeSession(newSession)
     setSession(newSession)
+    setSessionExpired(false)
   }
 
   // Uitloggen vraagt geen API-aanroep: de token wordt alleen verwijderd
@@ -57,6 +75,7 @@ function AuthProvider({ children }) {
     user: session?.user ?? null,
     token: session?.token ?? null,
     isAuthenticated: session !== null,
+    sessionExpired,
     login,
     logout,
   }

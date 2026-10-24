@@ -12,7 +12,7 @@ const tabs = [
 ]
 
 function LoginPage() {
-  const { isAuthenticated, user, logout } = useAuth()
+  const { isAuthenticated, user, logout, sessionExpired } = useAuth()
   const location = useLocation()
   const [activeTab, setActiveTab] = useState('inloggen')
   const [registeredEmail, setRegisteredEmail] = useState('')
@@ -96,7 +96,12 @@ function LoginPage() {
           >
             {activeTab === 'inloggen' ? (
               <>
-                {cameFromProtectedPage && !registeredEmail && (
+                {sessionExpired && !registeredEmail && (
+                  <p className="auth-page__notice">
+                    Je sessie is verlopen. Log opnieuw in.
+                  </p>
+                )}
+                {cameFromProtectedPage && !sessionExpired && !registeredEmail && (
                   <p className="auth-page__notice">
                     Log in om deze pagina te bekijken.
                   </p>

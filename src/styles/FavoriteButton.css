@@ -1,0 +1,39 @@
+.favorite-button {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.favorite-button__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.favorite-button__heart {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* Bewaard product: rustige knop met een gevuld hart (ontwerpafspraak 7.1) */
+.favorite-button__button--saved {
+  color: var(--color-primary);
+  background-color: var(--color-card);
+  box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+
+.favorite-button__button--saved .favorite-button__heart {
+  color: var(--color-accent);
+}
+
+.favorite-button__button--saved:hover {
+  color: #ffffff;
+  background-color: var(--color-primary);
+}
+
+.favorite-button .success-message a {
+  font-weight: bold;
+  color: inherit;
+}

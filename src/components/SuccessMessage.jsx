@@ -1,9 +1,9 @@
 import '../styles/SuccessMessage.css'
 
-function SuccessMessage({ message }) {
+function SuccessMessage({ message, children }) {
   return (
     <div className="success-message" role="status">
-      {message}
+      {message} {children}
     </div>
   )
 }

@@ -109,6 +109,22 @@ main {
   background-color: var(--color-accent-hover);
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.button--secondary {
+  color: var(--color-primary);
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+
+.button--secondary:hover {
+  color: #ffffff;
+  background-color: var(--color-primary);
+}
+
 @media (max-width: 600px) {
   :root {
     --page-padding: 16px;

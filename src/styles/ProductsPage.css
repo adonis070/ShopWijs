@@ -1,0 +1,28 @@
+.products-page {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.products-page__results {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.products-page__title {
+  font-size: 36px;
+}
+
+.products-page__count {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 600px) {
+  .products-page__title {
+    font-size: 28px;
+  }
+}

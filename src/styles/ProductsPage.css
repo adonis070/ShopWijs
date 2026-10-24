@@ -65,6 +65,11 @@
   color: var(--color-text-muted);
 }
 
+.products-page__choices {
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
 /* Tablet en mobiel: filters boven de resultaten */
 @media (max-width: 900px) {
   .products-page {

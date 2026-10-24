@@ -99,6 +99,14 @@ function ProductsPage() {
   const visibleProducts = sortProducts(filteredProducts, sortOrder)
   const resultLabel = visibleProducts.length === 1 ? 'product' : 'producten'
 
+  // Samenvatting van de actieve keuzes, bijvoorbeeld: zoekterm "jacket" · Dameskleding
+  const sortLabel = sortOptions.find((option) => option.value === sortOrder)?.label
+  const activeChoices = [
+    searchTerm.trim() && `zoekterm "${searchTerm.trim()}"`,
+    selectedCategory && formatCategory(selectedCategory),
+    sortOrder && sortLabel,
+  ].filter(Boolean)
+
   return (
     <section className="page container">
       <div className="products-page">
@@ -146,6 +154,12 @@ function ProductsPage() {
             <>
               <p className="products-page__count" aria-live="polite">
                 {visibleProducts.length} {resultLabel} gevonden
+                {activeChoices.length > 0 && (
+                  <span className="products-page__choices">
+                    {' · '}
+                    {activeChoices.join(' · ')}
+                  </span>
+                )}
               </p>
               <ProductList
                 products={visibleProducts}

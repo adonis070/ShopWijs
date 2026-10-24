@@ -1,0 +1,122 @@
+/* Visuele ontwerpafspraken uit het functioneel ontwerp (hoofdstuk 7.1) */
+:root {
+  --color-primary: #172033;
+  --color-accent: #ea580c;
+  --color-accent-hover: #c2410c;
+  --color-background: #f7f8fa;
+  --color-card: #ffffff;
+  --color-border: #e5e7eb;
+  --color-text: #374151;
+  --color-text-muted: #6b7280;
+  --color-error: #b91c1c;
+  --color-error-background: #fef2f2;
+  --color-error-border: #fecaca;
+
+  --font-family: Inter, Arial, Helvetica, sans-serif;
+  --content-width: 1180px;
+  --page-padding: 24px;
+  --card-gap: 24px;
+  --card-padding: 16px;
+  --radius: 8px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+/* De footer blijft onderaan, ook bij weinig inhoud */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--content-width) + 2 * var(--page-padding));
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+}
+
+.page {
+  padding-top: 40px;
+  padding-bottom: 56px;
+}
+
+.page-title {
+  font-size: 36px;
+  margin-bottom: 24px;
+}
+
+.page-actions {
+  margin-top: 24px;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: var(--color-accent);
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: var(--color-accent-hover);
+}
+
+@media (max-width: 600px) {
+  :root {
+    --page-padding: 16px;
+    --card-gap: 18px;
+  }
+
+  .page {
+    padding-top: 24px;
+  }
+
+  .page-title {
+    font-size: 28px;
+  }
+}

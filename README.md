@@ -75,7 +75,7 @@ src/
 | `/producten`     | Zoek-, filter- en sorteerpagina | Klaar       |
 | `/favorieten`    | Favorietenpagina (beveiligd)   | Klaar        |
 | `/inloggen`      | Inlog- en registratiepagina    | Klaar        |
-| `/vergelijken`   | Productvergelijking            | Placeholder  |
+| `/vergelijken`   | Productvergelijking            | Klaar        |
 
 ## Zoeken, filteren en sorteren
 
@@ -86,6 +86,16 @@ Op de pagina `/producten` kun je:
 - sorteren op prijs, van laag naar hoog of van hoog naar laag.
 
 Deze keuzes werken tegelijk. De gekozen categorie en sortering staan in de URL, bijvoorbeeld `/producten?categorie=electronics&sortering=prijs-oplopend`. Daardoor openen de categorieknoppen op de homepage direct een gefilterd overzicht. Met de knop **Alles wissen** zet je alle keuzes in één keer terug.
+
+## Producten vergelijken
+
+Op de pagina `/vergelijken` kies je met twee keuzelijsten twee producten. Na een klik op **Vergelijken** staan afbeelding, titel, prijs, categorie, beoordeling en beschrijving naast elkaar in een tabel. De laagste prijs en de hoogste beoordeling krijgen een groen label.
+
+- Een gekozen product vervang je via de keuzelijst; de vergelijking werkt direct bij.
+- Het product dat in de andere keuzelijst is gekozen, kun je niet nog eens kiezen.
+- Met minder dan twee gekozen producten verschijnt de melding om twee producten te selecteren.
+
+De productgegevens komen uit de Fake Store API; voor de vergelijking is geen account nodig.
 
 ## Registreren en inloggen
 

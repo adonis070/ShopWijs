@@ -1,0 +1,36 @@
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--card-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Desktop: vier kaarten naast elkaar */
+.product-list__item {
+  display: flex;
+  flex: 0 0 calc((100% - 3 * var(--card-gap)) / 4);
+}
+
+.product-list__empty {
+  padding: 24px;
+  text-align: center;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* Tablet: twee kaarten naast elkaar */
+@media (max-width: 900px) {
+  .product-list__item {
+    flex-basis: calc((100% - var(--card-gap)) / 2);
+  }
+}
+
+/* Mobiel: één kaart per rij */
+@media (max-width: 480px) {
+  .product-list__item {
+    flex-basis: 100%;
+  }
+}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import LoginForm from '../components/LoginForm.jsx'
 import RegisterForm from '../components/RegisterForm.jsx'
 import SuccessMessage from '../components/SuccessMessage.jsx'
@@ -13,8 +13,12 @@ const tabs = [
 
 function LoginPage() {
   const { isAuthenticated, user, logout } = useAuth()
+  const location = useLocation()
   const [activeTab, setActiveTab] = useState('inloggen')
   const [registeredEmail, setRegisteredEmail] = useState('')
+
+  // Doorgestuurd vanaf een beveiligde pagina (zie PrivateRoute)
+  const cameFromProtectedPage = Boolean(location.state?.from)
 
   function handleRegistered(email) {
     setRegisteredEmail(email)
@@ -92,6 +96,11 @@ function LoginPage() {
           >
             {activeTab === 'inloggen' ? (
               <>
+                {cameFromProtectedPage && !registeredEmail && (
+                  <p className="auth-page__notice">
+                    Log in om deze pagina te bekijken.
+                  </p>
+                )}
                 {registeredEmail && (
                   <SuccessMessage message="Je account is aangemaakt. Log nu in met je e-mailadres en wachtwoord." />
                 )}

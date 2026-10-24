@@ -1,3 +1,4 @@
+import { startTransition } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/useAuth.js'
 import '../styles/Navbar.css'
@@ -12,9 +13,13 @@ function Navbar() {
   const { isAuthenticated, user, logout } = useAuth()
   const navigate = useNavigate()
 
+  // Navigeren en uitloggen in één overgang, zodat een beveiligde pagina
+  // niet eerst nog doorstuurt naar het inlogformulier
   function handleLogout() {
-    logout()
-    navigate('/')
+    startTransition(() => {
+      navigate('/')
+      logout()
+    })
   }
 
   return (

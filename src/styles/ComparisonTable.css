@@ -1,0 +1,114 @@
+.comparison-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  overflow: hidden;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.comparison-table tr:last-child th,
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Eerste kolom: de naam van de eigenschap */
+.comparison-table th:first-child {
+  width: 160px;
+  color: var(--color-primary);
+  background-color: var(--color-background);
+}
+
+.comparison-table__product {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+}
+
+.comparison-table__image-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.comparison-table__image {
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.comparison-table__title {
+  font-weight: bold;
+}
+
+.comparison-table__title a {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+.comparison-table__title a:hover {
+  text-decoration: underline;
+}
+
+.comparison-table__price {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.comparison-table__description {
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+/* Markering van de laagste prijs en de hoogste beoordeling */
+.comparison-table__badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 2px 10px;
+  border: 1px solid var(--color-success-border);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--color-success);
+  background-color: var(--color-success-background);
+}
+
+.comparison-table__price .comparison-table__badge {
+  display: block;
+  width: fit-content;
+}
+
+@media (max-width: 600px) {
+  .comparison-table th,
+  .comparison-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .comparison-table th:first-child {
+    width: 92px;
+  }
+
+  .comparison-table__image-link {
+    height: 110px;
+  }
+
+  .comparison-table__price {
+    font-size: 16px;
+  }
+
+  .comparison-table__description {
+    font-size: 13px;
+  }
+}

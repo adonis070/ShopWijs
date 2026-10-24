@@ -1,0 +1,94 @@
+.compare-page__intro {
+  max-width: 720px;
+  margin-top: -8px;
+  margin-bottom: 24px;
+  color: var(--color-text-muted);
+}
+
+/* Twee keuzepanelen naast elkaar (ontwerp 7.7) */
+.compare-page__panels {
+  display: flex;
+  gap: var(--card-gap);
+}
+
+.compare-panel {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  padding: 20px;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.compare-panel__empty {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-text-muted);
+}
+
+.compare-panel__preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-height: 180px;
+  text-align: center;
+}
+
+.compare-panel__image {
+  height: 120px;
+  object-fit: contain;
+}
+
+.compare-panel__title {
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.compare-panel__price {
+  font-weight: bold;
+  color: var(--color-accent);
+}
+
+.compare-page__actions {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+.compare-page__actions .button {
+  min-width: 200px;
+}
+
+.compare-page__notice {
+  padding: 12px 16px;
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  font-weight: bold;
+  color: var(--color-primary);
+  background-color: var(--color-card);
+}
+
+/* Tablet en mobiel: keuzepanelen onder elkaar */
+@media (max-width: 700px) {
+  .compare-page__panels {
+    flex-direction: column;
+  }
+
+  .compare-panel__empty,
+  .compare-panel__preview {
+    min-height: 0;
+  }
+
+  .compare-panel__empty {
+    padding: 24px;
+  }
+}

@@ -1,0 +1,19 @@
+.rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.rating__stars {
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: #f59e0b;
+}
+
+.rating__count {
+  font-weight: normal;
+  color: var(--color-text-muted);
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AuthContext } from './AuthContext.js'
 import { loginUser } from '../services/authService.js'
-import { getTokenExpiry, isTokenExpired } from '../utils/jwt.js'
+import { getTokenExpiry, getTokenPayload, isTokenExpired } from '../utils/jwt.js'
 
 const STORAGE_KEY = 'shopwijs-auth'
 
@@ -71,8 +71,13 @@ function AuthProvider({ children }) {
     setSession(null)
   }
 
+  // Het login-antwoord van de NOVI API bevat geen id; de token wel (claim "userId")
+  const user = session
+    ? { ...session.user, id: getTokenPayload(session.token)?.userId ?? null }
+    : null
+
   const value = {
-    user: session?.user ?? null,
+    user,
     token: session?.token ?? null,
     isAuthenticated: session !== null,
     sessionExpired,

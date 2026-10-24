@@ -7,8 +7,14 @@ import SearchBar from '../components/SearchBar.jsx'
 import FilterGroup from '../components/FilterGroup.jsx'
 import { getCategories, getProducts } from '../services/productService.js'
 import { formatCategory } from '../utils/formatters.js'
-import { filterProducts } from '../utils/productFilters.js'
+import { filterProducts, sortProducts } from '../utils/productFilters.js'
 import '../styles/ProductsPage.css'
+
+const sortOptions = [
+  { value: '', label: 'Standaard' },
+  { value: 'prijs-oplopend', label: 'Prijs: laag naar hoog' },
+  { value: 'prijs-aflopend', label: 'Prijs: hoog naar laag' },
+]
 
 function ProductsPage() {
   const [products, setProducts] = useState([])
@@ -18,9 +24,11 @@ function ProductsPage() {
   const [reloadCount, setReloadCount] = useState(0)
   const [searchTerm, setSearchTerm] = useState('')
 
-  // De categorie staat in de URL, zodat de categorieknoppen op de homepage hiernaar linken
+  // Categorie en sortering staan in de URL, zodat de categorieknoppen op de homepage
+  // hiernaar linken en de keuzes behouden blijven bij terugkeren vanaf een productpagina
   const [searchParams, setSearchParams] = useSearchParams()
   const selectedCategory = searchParams.get('categorie') || ''
+  const sortOrder = searchParams.get('sortering') || ''
 
   useEffect(() => {
     const controller = new AbortController()
@@ -52,8 +60,19 @@ function ProductsPage() {
     return () => controller.abort()
   }, [reloadCount])
 
-  function handleCategoryChange(category) {
-    setSearchParams(category ? { categorie: category } : {})
+  // Past één keuze in de URL aan en laat de andere keuzes staan
+  function updateSearchParam(key, value) {
+    setSearchParams((currentParams) => {
+      const nextParams = new URLSearchParams(currentParams)
+
+      if (value) {
+        nextParams.set(key, value)
+      } else {
+        nextParams.delete(key)
+      }
+
+      return nextParams
+    })
   }
 
   const categoryOptions = [
@@ -64,10 +83,12 @@ function ProductsPage() {
     })),
   ]
 
-  const visibleProducts = filterProducts(products, {
+  // Eerst zoeken en filteren, daarna het resultaat sorteren
+  const filteredProducts = filterProducts(products, {
     searchTerm,
     category: selectedCategory,
   })
+  const visibleProducts = sortProducts(filteredProducts, sortOrder)
   const resultLabel = visibleProducts.length === 1 ? 'product' : 'producten'
 
   return (
@@ -79,7 +100,13 @@ function ProductsPage() {
             title="Categorie"
             options={categoryOptions}
             selectedValue={selectedCategory}
-            onChange={handleCategoryChange}
+            onChange={(category) => updateSearchParam('categorie', category)}
+          />
+          <FilterGroup
+            title="Sorteren op prijs"
+            options={sortOptions}
+            selectedValue={sortOrder}
+            onChange={(order) => updateSearchParam('sortering', order)}
           />
         </aside>
 

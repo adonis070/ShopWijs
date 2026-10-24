@@ -11,6 +11,9 @@
   --color-error: #b91c1c;
   --color-error-background: #fef2f2;
   --color-error-border: #fecaca;
+  --color-success: #15803d;
+  --color-success-background: #f0fdf4;
+  --color-success-border: #bbf7d0;
 
   --font-family: Inter, Arial, Helvetica, sans-serif;
   --content-width: 1180px;

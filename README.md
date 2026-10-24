@@ -10,8 +10,8 @@ Dit project is gemaakt voor de Frontend-eindopdracht van NOVI Hogeschool. Het fu
 - React Router voor de navigatie
 - Zelfgeschreven CSS met Flexbox
 - [Fake Store API](https://fakestoreapi.com) voor producten en categorieën
-- NOVI Dynamic API voor registratie en inloggen (favorieten volgen in een latere fase)
-- React Context voor de inlogstatus
+- NOVI Dynamic API voor registratie, inloggen en favorieten
+- React Context voor de inlogstatus en de favorieten
 
 ## Installatie
 
@@ -57,7 +57,7 @@ De NOVI Dynamic API accepteert alleen requests vanaf `localhost:5173` (of `3000`
 ```
 src/
 ├── components/   Herbruikbare componenten (Navbar, Footer, ProductCard, ...)
-├── context/      React Context voor de inlogstatus (AuthProvider, useAuth)
+├── context/      React Context voor inlogstatus en favorieten (AuthProvider, FavoritesProvider)
 ├── pages/        Pagina's die aan een route gekoppeld zijn
 ├── services/     API-aanroepen
 ├── styles/       CSS-bestanden
@@ -73,7 +73,7 @@ src/
 | `/`              | Homepage / productoverzicht    | Klaar        |
 | `/producten/:id` | Productdetailpagina            | Klaar        |
 | `/producten`     | Zoek-, filter- en sorteerpagina | Klaar       |
-| `/favorieten`    | Favorietenpagina               | Beveiligd, inhoud volgt |
+| `/favorieten`    | Favorietenpagina (beveiligd)   | Klaar        |
 | `/inloggen`      | Inlog- en registratiepagina    | Klaar        |
 | `/vergelijken`   | Productvergelijking            | Placeholder  |
 
@@ -97,5 +97,19 @@ Op de pagina `/inloggen` staan twee tabbladen:
 De inlogstatus staat in een React Context (`AuthProvider`) en blijft bewaard in `localStorage`, zodat je ingelogd blijft na het herladen van de pagina. Verloopt de token, dan word je automatisch uitgelogd. Uitloggen verwijdert alleen de token; daarvoor is geen API-aanroep nodig.
 
 De favorietenpagina is beveiligd. Ben je niet ingelogd, dan ga je eerst naar het inlogformulier en daarna terug naar de pagina die je wilde bekijken.
+
+## Favorieten
+
+Ingelogde gebruikers bewaren producten met de knop **Toevoegen aan favorieten** op de productdetailpagina. Een bewaard product toont een gevuld hart. Op de pagina `/favorieten` staan de eigen favorieten, met een knop om ze te verwijderen.
+
+De favorieten staan in de NOVI-collectie `favorites` met de velden `id`, `userId` en `productId`:
+
+| Actie | Request |
+| ----- | ------- |
+| Eigen favorieten ophalen | `GET /api/users/{userId}/favorites` |
+| Toevoegen | `POST /api/favorites` met `{ "userId": 1, "productId": 5 }` |
+| Verwijderen | `DELETE /api/favorites/{id}` |
+
+Alle requests sturen de JWT-token mee (`Authorization: Bearer ...`). Het gebruikers-ID komt uit de claim `userId` van die token. Een product dat al bewaard is, wordt niet nog eens toegevoegd. Afbeelding, titel en prijs van de producten komen uit de Fake Store API.
 
 Elke request naar de NOVI API stuurt de header `novi-education-project-id` mee. De NOVI-database is een leeromgeving die dagelijks wordt geleegd: gebruik alleen testgegevens, geen echte persoonsgegevens.

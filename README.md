@@ -10,7 +10,8 @@ Dit project is gemaakt voor de Frontend-eindopdracht van NOVI Hogeschool. Het fu
 - React Router voor de navigatie
 - Zelfgeschreven CSS met Flexbox
 - [Fake Store API](https://fakestoreapi.com) voor producten en categorieën
-- NOVI Dynamic API voor registratie, inloggen en favorieten (volgt in een latere fase)
+- NOVI Dynamic API voor registratie en inloggen (favorieten volgen in een latere fase)
+- React Context voor de inlogstatus
 
 ## Installatie
 
@@ -30,13 +31,17 @@ Benodigd: [Node.js](https://nodejs.org) (versie 20 of hoger) en npm.
 
    Op Windows (PowerShell): `Copy-Item .env.example .env`
 
+   Vul in `.env` bij `VITE_NOVI_PROJECT_ID` het project-ID in dat je van de NOVI Dynamic API hebt ontvangen. Zonder project-ID werken registreren en inloggen niet.
+
 3. Start de ontwikkelserver:
 
    ```bash
    npm run dev
    ```
 
-4. Open de URL die in de terminal verschijnt (standaard http://localhost:5173).
+4. Open http://localhost:5173.
+
+De NOVI Dynamic API accepteert alleen requests vanaf `localhost:5173` (of `3000`). Daarom draait de ontwikkelserver vast op poort 5173. Is die poort al in gebruik, dan stopt Vite met een foutmelding; sluit dan eerst de andere server af.
 
 ## Beschikbare scripts
 
@@ -52,7 +57,7 @@ Benodigd: [Node.js](https://nodejs.org) (versie 20 of hoger) en npm.
 ```
 src/
 ├── components/   Herbruikbare componenten (Navbar, Footer, ProductCard, ...)
-├── context/      React Context voor authenticatie (volgt later)
+├── context/      React Context voor de inlogstatus (AuthProvider, useAuth)
 ├── pages/        Pagina's die aan een route gekoppeld zijn
 ├── services/     API-aanroepen
 ├── styles/       CSS-bestanden
@@ -68,8 +73,8 @@ src/
 | `/`              | Homepage / productoverzicht    | Klaar        |
 | `/producten/:id` | Productdetailpagina            | Klaar        |
 | `/producten`     | Zoek-, filter- en sorteerpagina | Klaar       |
-| `/favorieten`    | Favorietenpagina               | Placeholder  |
-| `/inloggen`      | Inlog- en registratiepagina    | Placeholder  |
+| `/favorieten`    | Favorietenpagina               | Beveiligd, inhoud volgt |
+| `/inloggen`      | Inlog- en registratiepagina    | Klaar        |
 | `/vergelijken`   | Productvergelijking            | Placeholder  |
 
 ## Zoeken, filteren en sorteren
@@ -81,3 +86,16 @@ Op de pagina `/producten` kun je:
 - sorteren op prijs, van laag naar hoog of van hoog naar laag.
 
 Deze keuzes werken tegelijk. De gekozen categorie en sortering staan in de URL, bijvoorbeeld `/producten?categorie=electronics&sortering=prijs-oplopend`. Daardoor openen de categorieknoppen op de homepage direct een gefilterd overzicht. Met de knop **Alles wissen** zet je alle keuzes in één keer terug.
+
+## Registreren en inloggen
+
+Op de pagina `/inloggen` staan twee tabbladen:
+
+- **Registreren** maakt een account aan via `POST /api/users` van de NOVI Dynamic API. Nieuwe accounts krijgen de rol `user`.
+- **Inloggen** gebruikt `POST /api/login`. De API geeft een JWT-token terug, die een uur geldig is.
+
+De inlogstatus staat in een React Context (`AuthProvider`) en blijft bewaard in `localStorage`, zodat je ingelogd blijft na het herladen van de pagina. Verloopt de token, dan word je automatisch uitgelogd. Uitloggen verwijdert alleen de token; daarvoor is geen API-aanroep nodig.
+
+De favorietenpagina is beveiligd. Ben je niet ingelogd, dan ga je eerst naar het inlogformulier en daarna terug naar de pagina die je wilde bekijken.
+
+Elke request naar de NOVI API stuurt de header `novi-education-project-id` mee. De NOVI-database is een leeromgeving die dagelijks wordt geleegd: gebruik alleen testgegevens, geen echte persoonsgegevens.

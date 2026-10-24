@@ -1,0 +1,67 @@
+.products-page {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+/* Vaste filterzijbalk die meeschuift tijdens het scrollen */
+.products-page__filters {
+  position: sticky;
+  top: 92px;
+  flex: 0 0 240px;
+  padding: var(--card-padding);
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.products-page__filters-title {
+  margin-bottom: 16px;
+  font-size: 24px;
+}
+
+.products-page__filters > :last-child {
+  margin-bottom: 0;
+}
+
+.products-page__results {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.products-page__title {
+  font-size: 36px;
+}
+
+.products-page__count {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/* Tablet en mobiel: filters boven de resultaten */
+@media (max-width: 900px) {
+  .products-page {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .products-page__filters {
+    position: static;
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  .products-page__filters-title {
+    margin-bottom: 12px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .products-page__title {
+    font-size: 28px;
+  }
+}

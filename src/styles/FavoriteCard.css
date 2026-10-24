@@ -1,0 +1,71 @@
+/* Brede kaart (ontwerp 7.5): afbeelding links, gegevens en verwijderknop rechts */
+.favorite-card {
+  display: flex;
+  gap: var(--card-padding);
+  height: 100%;
+  padding: var(--card-padding);
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.favorite-card__image-link {
+  display: flex;
+  flex: 0 0 140px;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+}
+
+.favorite-card__image {
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.favorite-card__info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+}
+
+.favorite-card__category {
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+}
+
+.favorite-card__title {
+  font-size: 16px;
+}
+
+.favorite-card__title a {
+  text-decoration: none;
+}
+
+.favorite-card__title a:hover {
+  text-decoration: underline;
+}
+
+.favorite-card__price {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.favorite-card__remove {
+  margin-top: auto;
+  padding: 8px 16px;
+  font-size: 15px;
+}
+
+@media (max-width: 480px) {
+  .favorite-card__image-link {
+    flex-basis: 96px;
+    height: 96px;
+  }
+}

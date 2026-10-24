@@ -2,7 +2,7 @@
 
 ShopWijs is een React-webapplicatie waarmee gebruikers producten kunnen bekijken, zoeken, filteren, sorteren en vergelijken. Ingelogde gebruikers kunnen producten bewaren in een persoonlijke favorietenlijst.
 
-Dit project is gemaakt voor de Frontend-eindopdracht van NOVI Hogeschool. Het functioneel ontwerp staat in de map [`docs`](docs).
+Dit project is gemaakt voor de Frontend-eindopdracht van NOVI Hogeschool. Het functioneel ontwerp maakt geen deel uit van deze repository.
 
 ## Gebruikte techniek
 

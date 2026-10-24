@@ -17,6 +17,10 @@ dist-ssr
 .env.*
 !.env.example
 
+# Documentatie met persoonsgegevens (functioneel ontwerp) blijft lokaal
+docs/*.pdf
+docs/*.docx
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

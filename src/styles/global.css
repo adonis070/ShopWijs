@@ -11,6 +11,9 @@
   --color-error: #b91c1c;
   --color-error-background: #fef2f2;
   --color-error-border: #fecaca;
+  --color-success: #15803d;
+  --color-success-background: #f0fdf4;
+  --color-success-border: #bbf7d0;
 
   --font-family: Inter, Arial, Helvetica, sans-serif;
   --content-width: 1180px;
@@ -104,6 +107,22 @@ main {
 
 .button:hover {
   background-color: var(--color-accent-hover);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.button--secondary {
+  color: var(--color-primary);
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+
+.button--secondary:hover {
+  color: #ffffff;
+  background-color: var(--color-primary);
 }
 
 @media (max-width: 600px) {

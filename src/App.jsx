@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
+import PrivateRoute from './components/PrivateRoute.jsx'
 import HomePage from './pages/HomePage.jsx'
 import ProductsPage from './pages/ProductsPage.jsx'
 import ProductDetailPage from './pages/ProductDetailPage.jsx'
@@ -18,7 +19,14 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/producten" element={<ProductsPage />} />
           <Route path="/producten/:id" element={<ProductDetailPage />} />
-          <Route path="/favorieten" element={<FavoritesPage />} />
+          <Route
+            path="/favorieten"
+            element={
+              <PrivateRoute>
+                <FavoritesPage />
+              </PrivateRoute>
+            }
+          />
           <Route path="/vergelijken" element={<ComparePage />} />
           <Route path="/inloggen" element={<LoginPage />} />
           <Route path="*" element={<NotFoundPage />} />

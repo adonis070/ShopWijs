@@ -1,0 +1,7 @@
+.success-message {
+  padding: 16px 20px;
+  border: 1px solid var(--color-success-border);
+  border-radius: var(--radius);
+  color: var(--color-success);
+  background-color: var(--color-success-background);
+}

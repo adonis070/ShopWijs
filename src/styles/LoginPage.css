@@ -1,0 +1,164 @@
+/* Tweekolomsindeling (ontwerp 7.6): links de voordelen, rechts het formulier */
+.auth-page {
+  display: flex;
+  max-width: 960px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.auth-page__intro {
+  display: flex;
+  flex: 1 1 45%;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px;
+  color: #d1d5db;
+  background-color: var(--color-primary);
+}
+
+.auth-page__brand {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.auth-page__brand span {
+  color: var(--color-accent);
+}
+
+.auth-page__title {
+  font-size: 32px;
+  color: #ffffff;
+}
+
+.auth-page__benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  color: #ffffff;
+}
+
+.auth-page__benefits li::before {
+  content: '✓';
+  margin-right: 10px;
+  font-weight: bold;
+  color: var(--color-accent);
+}
+
+.auth-page__form-panel {
+  display: flex;
+  flex: 1 1 55%;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px;
+}
+
+.auth-page__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-page__notice {
+  padding: 12px 16px;
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  font-weight: bold;
+  color: var(--color-primary);
+  background-color: var(--color-background);
+}
+
+/* Tabbladen: het actieve tabblad is oranje onderstreept */
+.auth-tabs {
+  display: flex;
+  gap: 32px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.auth-tabs__tab {
+  margin-bottom: -1px;
+  padding: 8px 0 12px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--color-text-muted);
+  background: none;
+  cursor: pointer;
+}
+
+.auth-tabs__tab[aria-selected='true'] {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-form__submit {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.auth-form__switch {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.auth-form__switch button {
+  padding: 0;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  text-decoration: underline;
+  color: var(--color-primary);
+  background: none;
+  cursor: pointer;
+}
+
+/* Weergave voor een gebruiker die al is ingelogd */
+.auth-status {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.auth-status__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+@media (max-width: 800px) {
+  .auth-page {
+    flex-direction: column;
+  }
+
+  .auth-page__intro,
+  .auth-page__form-panel {
+    padding: 24px;
+  }
+
+  .auth-page__title {
+    font-size: 26px;
+  }
+
+  .auth-tabs__tab {
+    font-size: 19px;
+  }
+}

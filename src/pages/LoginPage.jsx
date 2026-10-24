@@ -17,7 +17,6 @@ function LoginPage() {
   const [activeTab, setActiveTab] = useState('inloggen')
   const [registeredEmail, setRegisteredEmail] = useState('')
 
-  // Doorgestuurd vanaf een beveiligde pagina (PrivateRoute) of een actie zoals de favorietenknop
   const cameFromProtectedPage = Boolean(location.state?.from)
   const redirectMessage =
     location.state?.message || 'Log in om deze pagina te bekijken.'

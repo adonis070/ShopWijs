@@ -1,8 +1,6 @@
 import { useId } from 'react'
 import '../styles/ProductSelect.css'
 
-// Keuzelijst met producten. Het product met unavailableId (gekozen in een andere
-// keuzelijst) kan niet gekozen worden, zodat hetzelfde product niet twee keer voorkomt.
 function ProductSelect({ label, products, value, onChange, unavailableId }) {
   const selectId = useId()
 

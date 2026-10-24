@@ -26,7 +26,6 @@ export async function registerUser(email, password) {
   }
 }
 
-// Geeft bij succes { token, user } terug, zoals beschreven in de NOVI-documentatie
 export async function loginUser(email, password) {
   const response = await noviRequest('/api/login', {
     method: 'POST',

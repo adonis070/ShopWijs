@@ -3,8 +3,6 @@ const NOVI_API_URL =
   'https://novi-backend-api-wgsgz.ondigitalocean.app'
 const NOVI_PROJECT_ID = import.meta.env.VITE_NOVI_PROJECT_ID
 
-// Stuurt een request naar de NOVI Dynamic API met de verplichte project-header.
-// Met een token wordt ook de Authorization-header (Bearer) meegestuurd.
 export async function noviRequest(path, { method = 'GET', body, token, signal } = {}) {
   if (!NOVI_PROJECT_ID) {
     throw new Error(

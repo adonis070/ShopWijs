@@ -27,7 +27,6 @@ function FavoritesPage() {
   const [message, setMessage] = useState('')
   const [actionError, setActionError] = useState('')
 
-  // Afbeelding, titel en prijs van de producten komen uit de Fake Store API
   useEffect(() => {
     const controller = new AbortController()
 
@@ -54,7 +53,7 @@ function FavoritesPage() {
     return () => controller.abort()
   }, [productsReloadCount])
 
-  // Elk bewaard product één keer tonen, in de volgorde waarin het is toegevoegd
+  // Set: de database kan dubbele rijen voor hetzelfde product bevatten
   const favoriteProductIds = [
     ...new Set(favorites.map((favorite) => favorite.productId)),
   ]

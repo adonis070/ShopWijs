@@ -5,8 +5,6 @@ import { getTokenExpiry, getTokenPayload, isTokenExpired } from '../utils/jwt.js
 
 const STORAGE_KEY = 'shopwijs-auth'
 
-// De sessie (token en gebruiker) wordt bewaard in localStorage, zodat de gebruiker
-// ingelogd blijft na het herladen van de pagina. Alleen een geldige token telt.
 function readStoredSession() {
   try {
     const session = JSON.parse(localStorage.getItem(STORAGE_KEY))
@@ -42,7 +40,7 @@ function AuthProvider({ children }) {
   const [session, setSession] = useState(readStoredSession)
   const [sessionExpired, setSessionExpired] = useState(false)
 
-  // Tokens van de NOVI API zijn een uur geldig: log automatisch uit zodra de token verloopt
+  // Automatisch uitloggen op het moment dat de token verloopt
   useEffect(() => {
     const expiry = session ? getTokenExpiry(session.token) : null
     if (expiry === null) {
@@ -65,7 +63,6 @@ function AuthProvider({ children }) {
     setSessionExpired(false)
   }
 
-  // Uitloggen vraagt geen API-aanroep: de token wordt alleen verwijderd
   function logout() {
     clearStoredSession()
     setSession(null)

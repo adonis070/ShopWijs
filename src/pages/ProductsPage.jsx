@@ -24,8 +24,6 @@ function ProductsPage() {
   const [reloadCount, setReloadCount] = useState(0)
   const [searchTerm, setSearchTerm] = useState('')
 
-  // Categorie en sortering staan in de URL, zodat de categorieknoppen op de homepage
-  // hiernaar linken en de keuzes behouden blijven bij terugkeren vanaf een productpagina
   const [searchParams, setSearchParams] = useSearchParams()
   const selectedCategory = searchParams.get('categorie') || ''
   const sortOrder = searchParams.get('sortering') || ''
@@ -60,7 +58,6 @@ function ProductsPage() {
     return () => controller.abort()
   }, [reloadCount])
 
-  // Past één keuze in de URL aan en laat de andere keuzes staan
   function updateSearchParam(key, value) {
     setSearchParams((currentParams) => {
       const nextParams = new URLSearchParams(currentParams)
@@ -91,7 +88,6 @@ function ProductsPage() {
     setSearchParams({})
   }
 
-  // Eerst zoeken en filteren, daarna het resultaat sorteren
   const filteredProducts = filterProducts(products, {
     searchTerm,
     category: selectedCategory,
@@ -99,7 +95,6 @@ function ProductsPage() {
   const visibleProducts = sortProducts(filteredProducts, sortOrder)
   const resultLabel = visibleProducts.length === 1 ? 'product' : 'producten'
 
-  // Samenvatting van de actieve keuzes, bijvoorbeeld: zoekterm "jacket" · Dameskleding
   const sortLabel = sortOptions.find((option) => option.value === sortOrder)?.label
   const activeChoices = [
     searchTerm.trim() && `zoekterm "${searchTerm.trim()}"`,

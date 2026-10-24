@@ -14,7 +14,6 @@ function LoginForm({ initialEmail = '', onSwitchToRegister }) {
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Na het inloggen terug naar de beveiligde pagina waar de gebruiker vandaan kwam
   const redirectTo = location.state?.from?.pathname || '/favorieten'
 
   async function handleSubmit(event) {

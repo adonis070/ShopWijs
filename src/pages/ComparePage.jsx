@@ -7,7 +7,6 @@ import { getProducts } from '../services/productService.js'
 import { formatPrice } from '../utils/formatters.js'
 import '../styles/ComparePage.css'
 
-// Klein voorbeeld van het gekozen product in een keuzepaneel
 function SelectedProductPreview({ product }) {
   if (!product) {
     return <p className="compare-panel__empty">Nog geen product gekozen</p>
@@ -114,7 +113,6 @@ function ComparePage() {
             </button>
           </div>
 
-          {/* Na een klik op Vergelijken blijft de vergelijking meelopen met de keuzes (F21) */}
           {showComparison && !bothSelected && (
             <p className="compare-page__notice" role="status">
               Selecteer twee producten om ze te vergelijken.

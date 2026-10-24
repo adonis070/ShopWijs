@@ -1,7 +1,6 @@
 const API_URL =
   import.meta.env.VITE_FAKESTORE_API_URL || 'https://fakestoreapi.com'
 
-// Haalt data op bij de Fake Store API en vertaalt fouten naar duidelijke meldingen
 async function fetchFromApi(path, signal) {
   let response
 

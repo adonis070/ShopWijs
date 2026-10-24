@@ -9,7 +9,6 @@ import '../styles/HomePage.css'
 
 const FEATURED_PRODUCT_COUNT = 4
 
-// Kiest het eerste product uit elke categorie, zodat de selectie gevarieerd is
 function getFeaturedProducts(products) {
   const featured = []
 
@@ -54,7 +53,6 @@ function HomePage() {
 
     loadProducts()
 
-    // Breekt de aanroep af als de gebruiker de pagina verlaat
     return () => controller.abort()
   }, [reloadCount])
 

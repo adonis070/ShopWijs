@@ -3,12 +3,11 @@ import Rating from './Rating.jsx'
 import { formatCategory, formatPrice } from '../utils/formatters.js'
 import '../styles/ComparisonTable.css'
 
-// Geeft true als de waarde de beste is en niet alle producten dezelfde waarde hebben
+// Geen markering als alle producten dezelfde waarde hebben
 function isBestValue(value, values, best) {
   return new Set(values).size > 1 && value === best
 }
 
-// Toont producten in kolommen naast elkaar, met per rij één eigenschap (F20)
 function ComparisonTable({ products }) {
   const prices = products.map((product) => product.price)
   const rates = products.map((product) => product.rating.rate)

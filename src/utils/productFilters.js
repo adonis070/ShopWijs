@@ -1,5 +1,3 @@
-// Houdt alleen producten over waarvan de naam de zoekterm bevat (hoofdletterongevoelig)
-// en die in de gekozen categorie vallen. Een lege categorie betekent: alle categorieën.
 export function filterProducts(products, { searchTerm, category }) {
   const normalizedSearch = searchTerm.trim().toLowerCase()
 
@@ -11,8 +9,7 @@ export function filterProducts(products, { searchTerm, category }) {
   })
 }
 
-// Sorteert op prijs zonder de oorspronkelijke lijst aan te passen.
-// Zonder sorteervolgorde blijft de volgorde van de API behouden.
+// sort() past de array zelf aan, daarom sorteren we een kopie
 export function sortProducts(products, sortOrder) {
   if (sortOrder === 'prijs-oplopend') {
     return [...products].sort((a, b) => a.price - b.price)

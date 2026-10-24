@@ -20,7 +20,6 @@ function FavoritesProvider({ children }) {
   // Synchrone vergrendeling per product, zodat een dubbele klik geen dubbele request geeft
   const pendingRef = useRef(new Set())
 
-  // Laad de favorieten van de ingelogde gebruiker; na uitloggen is de lijst leeg
   useEffect(() => {
     const controller = new AbortController()
 
@@ -74,7 +73,6 @@ function FavoritesProvider({ children }) {
   }
 
   async function addFavorite(productId) {
-    // Dubbele favorieten voorkomen: niets doen als het product al bewaard is of wordt
     if (!userId || isFavorite(productId) || pendingRef.current.has(productId)) {
       return
     }

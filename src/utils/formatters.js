@@ -1,4 +1,3 @@
-// Nederlandse namen voor de categorieën uit de Fake Store API
 const categoryLabels = {
   electronics: 'Elektronica',
   jewelery: 'Sieraden',

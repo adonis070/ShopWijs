@@ -19,7 +19,6 @@ function FavoriteButton({ productId }) {
   const isBusy = isPending(productId) || (isAuthenticated && isLoading)
 
   async function handleClick() {
-    // Niet ingelogd: eerst naar het inlogformulier, daarna terug naar dit product
     if (!isAuthenticated) {
       navigate('/inloggen', {
         state: {

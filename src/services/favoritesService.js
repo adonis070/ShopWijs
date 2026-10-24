@@ -1,6 +1,5 @@
 import { noviRequest } from './noviApi.js'
 
-// Zet een foutstatus van de NOVI API om naar een begrijpelijke melding
 function createError(status, fallbackMessage) {
   if (status === 401) {
     return new Error('Je sessie is verlopen. Log opnieuw in om je favorieten te beheren.')
@@ -13,7 +12,7 @@ function createError(status, fallbackMessage) {
   return new Error(fallbackMessage)
 }
 
-// Haalt alleen de favorieten van deze gebruiker op: [{ id, userId, productId }]
+// GET /api/users/favorites (gebruiker uit de JWT) geeft op de server een 400-fout, daarom het userId in de URL
 export async function getFavorites(userId, token, signal) {
   const response = await noviRequest(`/api/users/${userId}/favorites`, {
     token,

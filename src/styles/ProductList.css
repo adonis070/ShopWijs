@@ -7,10 +7,17 @@
   list-style: none;
 }
 
-/* Desktop: vier kaarten naast elkaar */
 .product-list__item {
   display: flex;
+}
+
+/* Desktop: vier of drie kaarten naast elkaar */
+.product-list--4-columns .product-list__item {
   flex: 0 0 calc((100% - 3 * var(--card-gap)) / 4);
+}
+
+.product-list--3-columns .product-list__item {
+  flex: 0 0 calc((100% - 2 * var(--card-gap)) / 3);
 }
 
 .product-list__empty {
@@ -23,14 +30,14 @@
 
 /* Tablet: twee kaarten naast elkaar */
 @media (max-width: 900px) {
-  .product-list__item {
+  .product-list .product-list__item {
     flex-basis: calc((100% - var(--card-gap)) / 2);
   }
 }
 
 /* Mobiel: één kaart per rij */
 @media (max-width: 480px) {
-  .product-list__item {
+  .product-list .product-list__item {
     flex-basis: 100%;
   }
 }

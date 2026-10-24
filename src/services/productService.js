@@ -32,6 +32,10 @@ export function getProducts(signal) {
   return fetchFromApi('/products', signal)
 }
 
+export function getCategories(signal) {
+  return fetchFromApi('/products/categories', signal)
+}
+
 export async function getProductById(id, signal) {
   const product = await fetchFromApi(`/products/${id}`, signal)
 

@@ -56,7 +56,7 @@ src/
 ├── pages/        Pagina's die aan een route gekoppeld zijn
 ├── services/     API-aanroepen
 ├── styles/       CSS-bestanden
-├── utils/        Hulpfuncties (prijs- en categorienotatie)
+├── utils/        Hulpfuncties (notatie, zoeken, filteren en sorteren)
 ├── App.jsx       Routes en vaste opmaak
 └── main.jsx      Startpunt van de applicatie
 ```
@@ -67,7 +67,17 @@ src/
 | ---------------- | ------------------------------ | ------------ |
 | `/`              | Homepage / productoverzicht    | Klaar        |
 | `/producten/:id` | Productdetailpagina            | Klaar        |
-| `/producten`     | Zoek-, filter- en sorteerpagina | Placeholder |
+| `/producten`     | Zoek-, filter- en sorteerpagina | Klaar       |
 | `/favorieten`    | Favorietenpagina               | Placeholder  |
 | `/inloggen`      | Inlog- en registratiepagina    | Placeholder  |
 | `/vergelijken`   | Productvergelijking            | Placeholder  |
+
+## Zoeken, filteren en sorteren
+
+Op de pagina `/producten` kun je:
+
+- zoeken op productnaam (direct tijdens het typen, hoofdletterongevoelig);
+- filteren op categorie;
+- sorteren op prijs, van laag naar hoog of van hoog naar laag.
+
+Deze keuzes werken tegelijk. De gekozen categorie en sortering staan in de URL, bijvoorbeeld `/producten?categorie=electronics&sortering=prijs-oplopend`. Daardoor openen de categorieknoppen op de homepage direct een gefilterd overzicht. Met de knop **Alles wissen** zet je alle keuzes in één keer terug.

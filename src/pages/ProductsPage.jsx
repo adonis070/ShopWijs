@@ -83,6 +83,14 @@ function ProductsPage() {
     })),
   ]
 
+  const hasActiveChoices =
+    searchTerm.trim() !== '' || selectedCategory !== '' || sortOrder !== ''
+
+  function resetAllChoices() {
+    setSearchTerm('')
+    setSearchParams({})
+  }
+
   // Eerst zoeken en filteren, daarna het resultaat sorteren
   const filteredProducts = filterProducts(products, {
     searchTerm,
@@ -108,6 +116,14 @@ function ProductsPage() {
             selectedValue={sortOrder}
             onChange={(order) => updateSearchParam('sortering', order)}
           />
+          <button
+            type="button"
+            className="products-page__reset"
+            onClick={resetAllChoices}
+            disabled={!hasActiveChoices}
+          >
+            Alles wissen
+          </button>
         </aside>
 
         <div className="products-page__results">
@@ -134,7 +150,7 @@ function ProductsPage() {
               <ProductList
                 products={visibleProducts}
                 columns={3}
-                emptyMessage="Geen producten gevonden. Pas je zoekterm of categorie aan."
+                emptyMessage="Geen producten gevonden. Pas je zoekterm of categorie aan, of kies 'Alles wissen'."
               />
             </>
           )}
